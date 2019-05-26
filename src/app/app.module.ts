@@ -11,7 +11,11 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { ResultService } from './services/result.service'
+import { ResultService } from './services/result.service';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:3002', options: {} };
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +24,8 @@ import { ResultService } from './services/result.service'
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     StatusBar,
