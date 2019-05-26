@@ -13,8 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ResultService } from './services/result.service'
 
-
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

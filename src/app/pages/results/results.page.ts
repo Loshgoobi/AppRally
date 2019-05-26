@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
+
 import { ResultService } from '../../services/result.service';
 import { SpecialService } from '../../services/special.service';
 
@@ -20,7 +21,6 @@ export class ResultsPage implements OnInit {
   }
 
   segmentChanged(ev: any) {
-    console.log('Segment changed', ev.detail.value);
     this.getResultsBySpecial(ev.detail.value)
   }
 
@@ -35,6 +35,9 @@ export class ResultsPage implements OnInit {
     await this.resultService.getResultBySpecial(idSpecial)
       .subscribe( res => {
         console.log(res);
+        res.sort((a, b) => {
+          return a.pos - b.pos
+        })
         this.results = res;
       })
   }
@@ -44,6 +47,7 @@ export class ResultsPage implements OnInit {
     .subscribe(res => {
       console.log(res);
       this.specials = res;
+
     })
   }
 
@@ -56,6 +60,7 @@ export class ResultsPage implements OnInit {
 
   ngOnInit() {
    this.getSpecials();
+   //this.getResultsBySpecial(this.specials[0]._id);
   }
 
 }
