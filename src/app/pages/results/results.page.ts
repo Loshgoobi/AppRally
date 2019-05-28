@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { Socket } from 'ngx-socket-io';
 
 
 import { ResultService } from '../../services/result.service';
@@ -14,21 +15,35 @@ import { SpecialService } from '../../services/special.service';
 export class ResultsPage implements OnInit {
 
   specials: any;
-  results: any;
+  results : any;
 
-  constructor(public resultService: ResultService, public specialService: SpecialService ) {
+  constructor(public resultService: ResultService, public specialService: SpecialService, private socket: Socket) {
+
+    this.getResults().subscribe(data => {
+      this.results.push(data);
+    })
 
   }
 
   segmentChanged(ev: any) {
     this.getResultsBySpecial(ev.detail.value)
   }
-
+  /*
   async getResults() {
-    await this.resultService.getResult()
+    await this.resultService.getResults()
       .subscribe(res => {
         this.results = res;
       });
+  }*/
+
+  getResults() {
+    let observable= new Observable(observer => {
+      this.socket.on('resultAdded', (data) => {
+        console.log("socket received")
+        observer.next(data);
+      });
+    });
+    return observable;
   }
 
   async getResultsBySpecial(idSpecial) {
@@ -59,8 +74,10 @@ export class ResultsPage implements OnInit {
   }
 
   ngOnInit() {
+
    this.getSpecials();
-   //this.getResultsBySpecial(this.specials[0]._id);
+   this.results = this.resultService.results;
+
   }
 
 }

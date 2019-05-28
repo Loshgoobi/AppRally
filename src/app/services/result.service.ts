@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
 import { Observable, of, throwError  } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { Socket } from 'ngx-socket-io';
 
 const url = "http://localhost:3002/api";
 const httpOptions = {
@@ -13,7 +14,9 @@ const httpOptions = {
 })
 export class ResultService {
 
-  constructor(private http: HttpClient) { }
+  results = this.socket.fromEvent<any>('resultAdded');
+
+  constructor(private http: HttpClient, private socket:Socket) { }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -35,13 +38,15 @@ export class ResultService {
     return body || { };
   }
 
-  getResult(): Observable<any> {
+  getResults(): Observable<any> {
     return this.http.get(url + '/results', httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
 
   getResultBySpecial(idSpecial: string): Observable<any> {
+    //this.socket.emit("getResultsBySpecial");
+    this.socket.emit("add result");
     return this.http.get(url +'/results/special/' + idSpecial, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
