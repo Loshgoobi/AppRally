@@ -10,7 +10,7 @@ import { ResultsPage } from './results.page';
 const routes: Routes = [
   {
     path: '',
-    component: ResultsPage
+    component: ResultsPage,
   }
 ];
 

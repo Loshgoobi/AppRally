@@ -34,8 +34,11 @@ export class ResultsPage implements OnInit {
 
 
   segmentChanged(ev: any) {
-    this.getResultsBySpecial(ev.detail.value)
+    this.getResultsBySpecial(ev.detail.value);
+    //intervalID = setInterval({console.log("pomme", 1000);
+    console.log(ev.detail.value);
   }
+
 
   async getResultsBySpecial(idSpecial){
     await this.resultService.getResultsBySpecial(idSpecial)

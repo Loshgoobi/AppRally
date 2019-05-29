@@ -10,14 +10,75 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment (ionChange)="segmentChanged($event)">
-    <ion-segment-button *ngFor="let special of specials" value={{special.num}}>
-      {{special.name}}
+  <ion-segment (ionChange)="segmentChanged($event)" scrollable>
+    <ion-segment-button value="1" checked>
+        <ion-label>1-Col St Jean</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+        <ion-label>2-Col St Jean</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="3">
+        <ion-label>3-Sigoyer</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="4">
+        <ion-label>4-Col St Jean</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="5">
+        <ion-label>5-Sigoyer</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="6">
+        <ion-label>6-Col de Faye</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="7">
+        <ion-label>7-Chabestan</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="8">
+        <ion-label>8-Col de Faye</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="9">
+        <ion-label>9-Chabestan</ion-label>
     </ion-segment-button>
   </ion-segment>
   <ion-list>
+      <ion-grid>
+          <ion-row>
+            <ion-col>
+                <h3>Position</h3>
+            </ion-col>
+            <ion-col>
+               <h3>Temp</h3>
+            </ion-col>
+            <ion-col>
+                <h3>Ecart Premier</h3>
+            </ion-col>
+            <ion-col>
+                <h3>Ecart précédant</h3>
+            </ion-col>
+            <ion-col>
+                <h3>Nom Pilote</h3>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
     <ion-item *ngFor="let result of results">
-      {{result.nPos}}
+        <ion-grid>
+            <ion-row>
+              <ion-col>
+                  {{result.nPos}}
+              </ion-col>
+              <ion-col>
+                  {{result.sTemps}}
+              </ion-col>
+              <ion-col>
+                  {{result.sEcart1}}
+              </ion-col>
+              <ion-col>
+                  {{result.sEcartP}}
+              </ion-col>
+              <ion-col>
+                  {{result.sNom}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
     </ion-item>
   </ion-list>
 </ion-content>

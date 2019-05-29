@@ -65,7 +65,7 @@ export class ResultService {
   */
 
   getResultsBySpecial(special_id) : Observable<any> {
-    return this.http.get(proxyurl + url + '/classification/1/1757/1/1/all/0/' + token, httpOptions);
+    return this.http.get(proxyurl + url + '/classification/1/1757/1/' + special_id + '/all/0/' + token, httpOptions);
   }
 
 }
