@@ -4,7 +4,10 @@ import { Observable, of, throwError  } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Socket } from 'ngx-socket-io';
 
+declare var cordova: any;
+
 //const url = "http://localhost:3002/api";
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
 const url = "https://rest.pksoft.fr";
 const token = "5BCF5E3581A64AB8866EBBB8D2607888";
 const httpOptions = {
@@ -62,7 +65,7 @@ export class ResultService {
   */
 
   getResultsBySpecial(special_id) : Observable<any> {
-    return this.http.get(url + '/classification/1/1757/1/1/all/0/' + token);
+    return this.http.get(proxyurl + url + '/classification/1/1757/1/1/all/0/' + token, httpOptions);
   }
 
 }

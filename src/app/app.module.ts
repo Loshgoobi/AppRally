@@ -17,6 +17,9 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 const config: SocketIoConfig = { url: 'http://localhost:3002', options: {} };
 
+import { HTTP } from '@ionic-native/http/ngx';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -27,7 +30,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3002', options: {} };
     HttpClientModule,
     SocketIoModule.forRoot(config)
   ],
-  providers: [
+  providers:[
+    HTTP,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

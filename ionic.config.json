@@ -1,5 +1,7 @@
 {
   "name": "AppRally",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
