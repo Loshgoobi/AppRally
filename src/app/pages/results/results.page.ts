@@ -14,27 +14,47 @@ import { SpecialService } from '../../services/special.service';
 })
 export class ResultsPage implements OnInit {
 
-  specials: any;
   results : any;
 
+  public specials: Array<{ id: number; name: string;}> = [];
   constructor(public resultService: ResultService, public specialService: SpecialService, private socket: Socket) {
-
+    /*
     this.getResults().subscribe(data => {
       this.results.push(data);
     })
+    */
 
+    for (let i = 0; i < 9; i++) {
+      this.specials.push({
+        id: i,
+        name: 'ES ' + (i+1)
+      });
+    }
   }
+
 
   segmentChanged(ev: any) {
     this.getResultsBySpecial(ev.detail.value)
   }
-  /*
+
+  async getResultsBySpecial(idSpecial){
+    await this.resultService.getResultsBySpecial(idSpecial)
+      .subscribe( res => {
+        console.log(res);
+        /*res.sort((a, b) => {
+          return a.pos - b.pos
+        })*/
+        this.results = res;
+      })
+  }
+
+    /*
   async getResults() {
     await this.resultService.getResults()
       .subscribe(res => {
         this.results = res;
       });
-  }*/
+  }
 
   getResults() {
     let observable= new Observable(observer => {
@@ -64,19 +84,13 @@ export class ResultsPage implements OnInit {
       this.specials = res;
 
     })
-  }
-
-  isChecked(special) {
-    if(special.name === "ES1") {
-      return true;
-    }
-    return false;
-  }
+  }*/
 
   ngOnInit() {
 
-   this.getSpecials();
-   this.results = this.resultService.results;
+   //this.getSpecials();
+   //this.results = this.resultService.results;
+
 
   }
 

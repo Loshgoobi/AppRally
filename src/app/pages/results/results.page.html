@@ -11,7 +11,7 @@
 
 <ion-content>
   <ion-segment (ionChange)="segmentChanged($event)">
-    <ion-segment-button *ngFor="let special of specials" value={{special._id}}>
+    <ion-segment-button *ngFor="let special of specials" value={{special.num}}>
       {{special.name}}
     </ion-segment-button>
   </ion-segment>
