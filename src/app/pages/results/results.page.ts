@@ -48,6 +48,14 @@ export class ResultsPage implements OnInit {
           return a.pos - b.pos
         })*/
         this.results = res;
+        this.results.forEach(result => {
+          if(result.sEcart1==""){
+            result.sEcart1 = "00:00.0"
+          }
+          if(result.sEcartP==""){
+            result.sEcartP = "00:00.0"
+          }
+        });
       })
   }
 
