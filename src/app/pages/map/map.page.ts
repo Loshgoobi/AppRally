@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-map',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapPage implements OnInit {
 
-  constructor() { }
+
+  constructor(private sanitize: DomSanitizer) {
+}
 
   ngOnInit() {
   }
